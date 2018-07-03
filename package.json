@@ -1,0 +1,19 @@
+{
+  "name": "bananahattest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bananaHatTest.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha --require babel-core/register test",
+    "d": "babel-node ./bunch/banana1.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0"
+  }
+}
