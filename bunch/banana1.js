@@ -44,6 +44,30 @@ const testFile = (word) => {
   return propNounMod(word, modWord)
 }
 
+const punctuationObjTest = (phrase) => {
+  let matchArr = phrase.split("");
+  let woof = {};
+  matchArr.map((character,index) => {
+    if (/[.,\/#!\?$%\^&\*;:{}=\-_`~()]/.test(character)) {
+        woof[index] = character;
+    }
+  })
+  return woof;
+}
+
+const punctuationArrayTest = (phrase) => {
+  let matchArr = phrase.split("");
+
+  let bucket = matchArr.map((character,index) => {
+    if (/[.,\/#!$%\^&\*;:{}=\-_`~()]/.test(character)) {
+      let woof = {};
+        woof[index] = character;
+        console.log(woof);
+        return woof;
+    }
+  }).filter(the => the !== undefined)
+}
+
 const punctuationTest = (phrase) => {
   let punctuation = '';
   if (phrase.includes('.')){
@@ -60,10 +84,10 @@ const punctuationTest = (phrase) => {
   }return punctuation
 }
 
+// need to refactor to use punctuationObjTest
 const makePigSentence = (phrase) => {
   let punctuation = punctuationTest(phrase);
   let phraseArr = phrase.replace(punctuation, '').split(' ');
-
   phraseArr = phraseArr.map((word, index) => {
     let meow = word.toLowerCase();
     if(/^[A-Z]/.test(word)) {
@@ -76,10 +100,6 @@ const makePigSentence = (phrase) => {
 
   return phraseArr + punctuation;
 }
-// TUESDAY: Ready to solve "it should maintain titleCase in middle of sentence" - currently failing.
-
-console.log(makePigSentence('It is quite a long way to the quiet river.'));
-console.log(/^[A-Z]/.test('bAnana'));
 
 module.exports = {
   testFile:testFile,
