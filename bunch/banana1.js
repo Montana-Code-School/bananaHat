@@ -48,7 +48,7 @@ const punctuationObjTest = (phrase) => {
   let matchArr = phrase.split("");
   let woof = {};
   matchArr.map((character,index) => {
-    if (/[.,\/#!\?$%\^&\*;:{}=\-_`~()]/.test(character)) {
+    if (/[.,\/#!$\"\|\'%\^&\*;:{}=\-_`~()?]/.test(character)) {
         woof[index] = character;
     }
   })
@@ -59,14 +59,15 @@ const punctuationArrayTest = (phrase) => {
   let matchArr = phrase.split("");
 
   let bucket = matchArr.map((character,index) => {
-    if (/[.,\/#!$%\^&\*;:{}=\-_`~()]/.test(character)) {
+    if (/[.,\/#!$\"\|\'%\^&\*;:{}=\-_`~()?]/.test(character)) {
       let woof = {};
         woof[index] = character;
-        console.log(woof);
         return woof;
     }
   }).filter(the => the !== undefined)
+  return bucket
 }
+console.log(punctuationArrayTest("string! I am over this exercise?"));
 
 const punctuationTest = (phrase) => {
   let punctuation = '';
@@ -84,10 +85,9 @@ const punctuationTest = (phrase) => {
   }return punctuation
 }
 
-// need to refactor to use punctuationObjTest
 const makePigSentence = (phrase) => {
   let punctuation = punctuationTest(phrase);
-  let phraseArr = phrase.replace(punctuation, '').split(' ');
+  let phraseArr = phrase.replace(/[.,\/#!$\"\|\'%\^&\*;:{}=\-_`~()?]/g, '').split(' ');
   phraseArr = phraseArr.map((word, index) => {
     let meow = word.toLowerCase();
     if(/^[A-Z]/.test(word)) {
@@ -97,9 +97,9 @@ const makePigSentence = (phrase) => {
     }
     return meow;
   }).join(' ')
-
-  return phraseArr + punctuation;
+  return phraseArr + punctuation
 }
+makePigSentence('Claire had the "Banana Hat Song" stuck in her head all weekend.')
 
 module.exports = {
   testFile:testFile,
