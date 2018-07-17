@@ -87,6 +87,9 @@ const testFile = (word) => {
 const punctuationTest = (word) => {
   let arrPunc = [];
   let arrChar = [];
+  let vowelIndex = findVowelIndex(word);
+  let modWord = ''
+  let wordEnding = ''
 
   word.split('').map((char) =>{
     if (/[.,\/#!$%\^&\*;:{}=\-_`~()\"]/.test(char)) {
@@ -95,18 +98,52 @@ const punctuationTest = (word) => {
   }else {
     arrChar.push(char)
     arrPunc.push(null)
-  }
-  })
-  for (var i = arrChar.length-1; i < 0; i--) {
-    arrChar[i] !== /[.,\/#!$%\^&\*;:{}=\-_`~()\"]/ {
-    
-    }
-  }
-  console.log(arrPunc);
-  console.log(arrChar);
+   }
+ })
+
+ if ( isVowel(word.charAt(0)) ) {
+   wordEnding = 'way'
+   modWord = word += 'way'
+   arrPunc.push(null)
+   arrChar.splice(word.length, 0, wordEnding)
+ } else if (word[0] === 'q') {
+   wordEnding = word.slice(0, vowelIndex + 1) + 'ay'
+   modWord = word.slice(vowelIndex + 1, word.length) + wordEnding;
+   arrPunc.push(null)
+   arrChar.splice(word.length-1, 0, wordEnding)
+ } else if (!isVowel(word.charAt(0))) {
+   wordEnding = word.slice(0,vowelIndex) + 'ay'
+   modWord = word.slice(vowelIndex, word.length) + wordEnding;
+   arrPunc.push(null)
+   arrChar.splice(word.length-1, 0, wordEnding)
+ }
+ // return propNounMod(word, modWord)
+let testWord = 'oan,ana!,'
+let testWordPuncArray = testWord.match(/[.,\/#!$%\^&\*;:{}=\-_`~()\"]/g)
+let lastPunctuation = testWordPuncArray[testWordPuncArray.length - 1]
+let lastPunctuationRegex =  new RegExp('\\' + lastPunctuation, 'gi')
+let lastPunctuationIndex = testWord.search(lastPunctuation)
+let samePuncArray = testWord.match(lastPunctuationRegex)
+
+if (samePuncArray.length !== 1){
+    lastPunctuation = samePuncArray[samePuncArray.length-1]
+    lastPunctuationIndex = testWord.lastIndexOf(lastPunctuation)
+
+}else {
+
 }
 
-punctuationTest('"oan,ana!"')
+  console.log(arrPunc);
+  console.log(arrChar);
+  console.log(testWordPuncArray);
+  console.log(lastPunctuation);
+  console.log(lastPunctuationIndex);
+  console.log(lastPunctuationRegex);
+  console.log(samePuncArray);
+  console.log(samePuncArray.length === 1);
+}
+
+punctuationTest('butt!')
 
 // need to refactor to use punctuationObjTest
 const makePigSentence = (phrase) => {
