@@ -44,6 +44,16 @@ const testFile = (word) => {
   return propNounMod(word, modWord)
 }
 
+const punctuationObjTest = (phrase) => {
+  let matchArr = phrase.split("");
+  let woof = {};
+  matchArr.map((character,index) => {
+    if (/[.,\/#!$\"\|\'%\^&\*;:{}=\-_`~()?]/.test(character)) {
+        woof[index] = character;
+    }
+  })
+  return woof;
+}
 // const punctuationObjTest = (phrase) => {
 //   let matchArr = phrase.split("");
 //   let woof = {};
@@ -67,7 +77,6 @@ const testFile = (word) => {
 //     }
 //   }).filter(the => the !== undefined)
 // }
-
 // const punctuationTest = (phrase) => {
 //   let punctuation = '';
 //   if (phrase.includes('.')){
@@ -84,6 +93,17 @@ const testFile = (word) => {
 //   }return punctuation
 // }
 
+  let bucket = matchArr.map((character,index) => {
+    if (/[.,\/#!$\"\|\'%\^&\*;:{}=\-_`~()?]/.test(character)) {
+      let woof = {};
+        woof[index] = character;
+        return woof;
+    }
+  }).filter(the => the !== undefined)
+  return bucket
+}
+console.log(punctuationArrayTest("string! I am over this exercise?"));
+
 const punctuationTest = (word) => {
   let arrPunc = [];
   let arrChar = [];
@@ -98,6 +118,7 @@ const punctuationTest = (word) => {
   }else {
     arrChar.push(char)
     arrPunc.push(null)
+
    }
  })
 
@@ -132,7 +153,6 @@ if (samePuncArray.length !== 1){
 }else {
 
 }
-
   console.log(arrPunc);
   console.log(arrChar);
   console.log(testWordPuncArray);
@@ -148,7 +168,7 @@ punctuationTest('butt!')
 // need to refactor to use punctuationObjTest
 const makePigSentence = (phrase) => {
   let punctuation = punctuationTest(phrase);
-  let phraseArr = phrase.replace(punctuation, '').split(' ');
+  let phraseArr = phrase.replace(/[.,\/#!$\"\|\'%\^&\*;:{}=\-_`~()?]/g, '').split(' ');
   phraseArr = phraseArr.map((word, index) => {
     let meow = word.toLowerCase();
     if(/^[A-Z]/.test(word)) {
@@ -158,9 +178,9 @@ const makePigSentence = (phrase) => {
     }
     return meow;
   }).join(' ')
-
-  return phraseArr + punctuation;
+  return phraseArr + punctuation
 }
+makePigSentence('Claire had the "Banana Hat Song" stuck in her head all weekend.')
 
 module.exports = {
   testFile:testFile,
