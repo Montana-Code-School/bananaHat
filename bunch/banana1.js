@@ -54,9 +54,44 @@ const punctuationObjTest = (phrase) => {
   })
   return woof;
 }
-
-const punctuationArrayTest = (phrase) => {
-  let matchArr = phrase.split("");
+// const punctuationObjTest = (phrase) => {
+//   let matchArr = phrase.split("");
+//   let woof = {};
+//   matchArr.map((character,index) => {
+//     if (/[.,\/#!\?$%\^&\*;:{}=\-_`~()]/.test(character)) {
+//         woof[index] = character;
+//     }
+//   })
+//   return woof;
+// }
+//
+// const punctuationArrayTest = (phrase) => {
+//   let matchArr = phrase.split("");
+//
+//   let bucket = matchArr.map((character,index) => {
+//     if (/[.,\/#!$%\^&\*;:{}=\-_`~()]/.test(character)) {
+//       let woof = {};
+//         woof[index] = character;
+//         console.log(woof);
+//         return woof;
+//     }
+//   }).filter(the => the !== undefined)
+// }
+// const punctuationTest = (phrase) => {
+//   let punctuation = '';
+//   if (phrase.includes('.')){
+//     punctuation = phrase[phrase.lastIndexOf('.')]
+//   }
+//   else if (phrase.includes('!')){
+//      punctuation = phrase[phrase.lastIndexOf('!')]
+//   }
+//   else if (phrase.includes('?')){
+//     punctuation = phrase[phrase.lastIndexOf('?')]
+//   }
+//   else {
+//     punctuation = ''
+//   }return punctuation
+// }
 
   let bucket = matchArr.map((character,index) => {
     if (/[.,\/#!$\"\|\'%\^&\*;:{}=\-_`~()?]/.test(character)) {
@@ -69,22 +104,31 @@ const punctuationArrayTest = (phrase) => {
 }
 console.log(punctuationArrayTest("string! I am over this exercise?"));
 
-const punctuationTest = (phrase) => {
-  let punctuation = '';
-  if (phrase.includes('.')){
-    punctuation = phrase[phrase.lastIndexOf('.')]
+const punctuationTest = (word) => {
+  let arrPunc = [];
+  let arrChar = [];
+
+  word.split('').map((char) =>{
+    if (/[.,\/#!$%\^&\*;:{}=\-_`~()\"]/.test(char)) {
+    arrPunc.push(char)
+    arrChar.push(null)
+  }else {
+    arrChar.push(char)
+    arrPunc.push(null)
   }
-  else if (phrase.includes('!')){
-     punctuation = phrase[phrase.lastIndexOf('!')]
+  })
+  for (var i = arrChar.length-1; i < 0; i--) {
+    arrChar[i] !== /[.,\/#!$%\^&\*;:{}=\-_`~()\"]/ {
+
+    }
   }
-  else if (phrase.includes('?')){
-    punctuation = phrase[phrase.lastIndexOf('?')]
-  }
-  else {
-    punctuation = ''
-  }return punctuation
+  console.log(arrPunc);
+  console.log(arrChar);
 }
 
+punctuationTest('"oan,ana!"')
+
+// need to refactor to use punctuationObjTest
 const makePigSentence = (phrase) => {
   let punctuation = punctuationTest(phrase);
   let phraseArr = phrase.replace(/[.,\/#!$\"\|\'%\^&\*;:{}=\-_`~()?]/g, '').split(' ');

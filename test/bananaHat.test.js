@@ -8,8 +8,8 @@ const makePigSentence = banana1.makePigSentence;
 // for words that begin with consonant sounds, all letters before the intital
 // vowel are placed at the end of the word sequence, then "ay" is added.
 //
-// for words that start with a vowel all you need to do is add "yay"
-// "ultimate" becomes ultimateyay
+// for words that start with a vowel all you need to do is add "way"
+// "ultimate" becomes ultimateway
 //
 // a word that begins with "y" is treated as a consonant word
 // "yellow" becomes "ellowyay"
