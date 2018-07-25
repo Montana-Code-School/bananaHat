@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous">
+      </script>
+      <link
+        rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous"
+      >
+      <link
+        rel="stylesheet"
+        href="index.css"
+      >
+      <link
+        rel="import"
+        href="./banana1.js"
+        id="translator"
+      >
+      <script>
+        function pigLatin(){
+          document.getElementById("translator").innerHTML=alert("Is this working?")
+        }
+      </script>
+    <meta charset="utf-8">
+    <title>Banana Hat!</title>
+  </head>
+  <body>
+    <div class="jumbotron">
+      <h1 class="display-4 text-center" >BANANAHAT!</h1>
+      <p class="lead text-center">This is a simple pig latin translator named BANANAHAT.</p>
+      <p class="text-center">It's awesome.</p>
+      <p class="lead">
+        <input
+          type="text"
+          class="form-group center-block"
+          style="width:700px"
+          placeholder="Write your sentence here"
+          aria-label="Users Input"
+          aria-describedby="basic-addon2"
+        >
+        <button
+        id="translator"
+        class="btn btn-primary btn-lg center-block"
+        style="width:160px"
+        href="#"
+        onclick="pigLatin()"
+        role="button">Translate!
+        </button>
+      </p>
+    </div>
+    <div class="jumbotron">
+      <output></output>
+    </div>
+  </body>
+</html>
