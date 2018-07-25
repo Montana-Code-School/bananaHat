@@ -54,118 +54,23 @@ const punctuationObjTest = (phrase) => {
   })
   return woof;
 }
-// const punctuationObjTest = (phrase) => {
-//   let matchArr = phrase.split("");
-//   let woof = {};
-//   matchArr.map((character,index) => {
-//     if (/[.,\/#!\?$%\^&\*;:{}=\-_`~()]/.test(character)) {
-//         woof[index] = character;
-//     }
-//   })
-//   return woof;
-// }
-//
-// const punctuationArrayTest = (phrase) => {
-//   let matchArr = phrase.split("");
-//
-//   let bucket = matchArr.map((character,index) => {
-//     if (/[.,\/#!$%\^&\*;:{}=\-_`~()]/.test(character)) {
-//       let woof = {};
-//         woof[index] = character;
-//         console.log(woof);
-//         return woof;
-//     }
-//   }).filter(the => the !== undefined)
-// }
-// const punctuationTest = (phrase) => {
-//   let punctuation = '';
-//   if (phrase.includes('.')){
-//     punctuation = phrase[phrase.lastIndexOf('.')]
-//   }
-//   else if (phrase.includes('!')){
-//      punctuation = phrase[phrase.lastIndexOf('!')]
-//   }
-//   else if (phrase.includes('?')){
-//     punctuation = phrase[phrase.lastIndexOf('?')]
-//   }
-//   else {
-//     punctuation = ''
-//   }return punctuation
-// }
 
-  let bucket = matchArr.map((character,index) => {
-    if (/[.,\/#!$\"\|\'%\^&\*;:{}=\-_`~()?]/.test(character)) {
-      let woof = {};
-        woof[index] = character;
-        return woof;
-    }
-  }).filter(the => the !== undefined)
-  return bucket
-}
-console.log(punctuationArrayTest("string! I am over this exercise?"));
-
-const punctuationTest = (word) => {
-  let arrPunc = [];
-  let arrChar = [];
-  let vowelIndex = findVowelIndex(word);
-  let modWord = ''
-  let wordEnding = ''
-
-  word.split('').map((char) =>{
-    if (/[.,\/#!$%\^&\*;:{}=\-_`~()\"]/.test(char)) {
-    arrPunc.push(char)
-    arrChar.push(null)
-  }else {
-    arrChar.push(char)
-    arrPunc.push(null)
-
-   }
- })
-
- if ( isVowel(word.charAt(0)) ) {
-   wordEnding = 'way'
-   modWord = word += 'way'
-   arrPunc.push(null)
-   arrChar.splice(word.length, 0, wordEnding)
- } else if (word[0] === 'q') {
-   wordEnding = word.slice(0, vowelIndex + 1) + 'ay'
-   modWord = word.slice(vowelIndex + 1, word.length) + wordEnding;
-   arrPunc.push(null)
-   arrChar.splice(word.length-1, 0, wordEnding)
- } else if (!isVowel(word.charAt(0))) {
-   wordEnding = word.slice(0,vowelIndex) + 'ay'
-   modWord = word.slice(vowelIndex, word.length) + wordEnding;
-   arrPunc.push(null)
-   arrChar.splice(word.length-1, 0, wordEnding)
- }
- // return propNounMod(word, modWord)
-let testWord = 'oan,ana!,'
-let testWordPuncArray = testWord.match(/[.,\/#!$%\^&\*;:{}=\-_`~()\"]/g)
-let lastPunctuation = testWordPuncArray[testWordPuncArray.length - 1]
-let lastPunctuationRegex =  new RegExp('\\' + lastPunctuation, 'gi')
-let lastPunctuationIndex = testWord.search(lastPunctuation)
-let samePuncArray = testWord.match(lastPunctuationRegex)
-
-if (samePuncArray.length !== 1){
-    lastPunctuation = samePuncArray[samePuncArray.length-1]
-    lastPunctuationIndex = testWord.lastIndexOf(lastPunctuation)
-
-}else {
-
-}
-  console.log(arrPunc);
-  console.log(arrChar);
-  console.log(testWordPuncArray);
-  console.log(lastPunctuation);
-  console.log(lastPunctuationIndex);
-  console.log(lastPunctuationRegex);
-  console.log(samePuncArray);
-  console.log(samePuncArray.length === 1);
+const punctuationTest = (phrase) => {
+  let punctuation = '';
+  if (phrase.includes('.')){
+    punctuation = phrase[phrase.lastIndexOf('.')]
+  }
+  else if (phrase.includes('!')){
+     punctuation = phrase[phrase.lastIndexOf('!')]
+  }
+  else if (phrase.includes('?')){
+    punctuation = phrase[phrase.lastIndexOf('?')]
+  }
+  else {
+    punctuation = ''
+  }return punctuation
 }
 
-punctuationTest('butt!')
-
-// need to refactor to use punctuationObjTest
 const makePigSentence = (phrase) => {
   let punctuation = punctuationTest(phrase);
   let phraseArr = phrase.replace(/[.,\/#!$\"\|\'%\^&\*;:{}=\-_`~()?]/g, '').split(' ');
@@ -180,7 +85,7 @@ const makePigSentence = (phrase) => {
   }).join(' ')
   return phraseArr + punctuation
 }
-makePigSentence('Claire had the "Banana Hat Song" stuck in her head all weekend.')
+console.log(makePigSentence('Claire had the "Banana Hat Song" quite stuck in her head all weekend.'));
 
 module.exports = {
   testFile:testFile,
