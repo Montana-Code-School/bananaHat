@@ -17,26 +17,23 @@
         rel="stylesheet"
         href="index.css"
       >
-      <link
-        rel="import"
-        href="./banana1.js"
-        id="translator"
-      >
-      <script>
-        function pigLatin(){
-          document.getElementById("translator").innerHTML=alert("Is this working?")
-        }
-      </script>
     <meta charset="utf-8">
     <title>Banana Hat!</title>
   </head>
   <body>
     <div class="jumbotron">
-      <h1 class="display-4 text-center" >BANANAHAT!</h1>
-      <p class="lead text-center">This is a simple pig latin translator named BANANAHAT.</p>
+      <h1 class="display-4 text-center" >🍌BANANAHAT!🍌</h1>
+      <img
+        src="https://media3.giphy.com/media/63zsi3a21Rdja/giphy-downsized.gif"
+        alt="It's a banana hat!"
+        class="center-block"
+      >
+<!--ADD HAT EMOJI-->
+      <p class="lead text-center">This is a simple Pig Latin translator named BANANAHAT.</p>
       <p class="text-center">It's awesome.</p>
       <p class="lead">
         <input
+          id="translator-input"
           type="text"
           class="form-group center-block"
           style="width:700px"
@@ -45,7 +42,6 @@
           aria-describedby="basic-addon2"
         >
         <button
-        id="translator"
         class="btn btn-primary btn-lg center-block"
         style="width:160px"
         href="#"
@@ -55,7 +51,25 @@
       </p>
     </div>
     <div class="jumbotron">
-      <output></output>
+      <p
+        class="lead text-center"
+        id="output"
+      >
+      </p>
     </div>
+    <script
+      src="./banana1.js"
+      charset="utf-8">
+    </script>
+    <script>
+      function modify(sentence){
+        return sentence.toUpperCase();
+      }
+      function pigLatin(){
+        let translator = document.getElementById("translator-input").value;
+        translator=modify(translator)
+        document.getElementById("output").innerHTML=translator;
+      }
+    </script>
   </body>
 </html>
