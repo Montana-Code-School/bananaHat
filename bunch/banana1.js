@@ -23,6 +23,22 @@ const propNounMod = (word, modWord) => {
   return modWord
 }
 
+const beginningPunctuation = (word) => {
+  if(/[.,\/#!$\"\|\'%\^&\*;:{}=\-_`~()?]/.test(word.charAt(0))) {
+    return word.charAt(0)
+  }else{
+    return ''
+  }
+}
+
+const endPunctuation = (word) => {
+  if(/[.,\/#!$\"\|\'%\^&\*;:{}=\-_`~()?]/.test(word.charAt(word.length-1))) {
+    return word.charAt(word.length-1)
+  }else{
+    return ''
+  }
+}
+
 function toTitleCase(str) {
     return str.replace(
         /\w\S*/g,
@@ -32,7 +48,7 @@ function toTitleCase(str) {
     );
 }
 
-const testFile = (word) => {
+const wordModifier = (word) => {
   let vowelIndex = findVowelIndex(word);
   let modWord = ''
   if ( isVowel(word.charAt(0)) ) {
@@ -45,55 +61,29 @@ const testFile = (word) => {
   return propNounMod(word, modWord)
 }
 
-const punctuationObjTest = (phrase) => {
-  let matchArr = phrase.split("");
-  let woof = {};
-  matchArr.map((character,index) => {
-    if (/[.,\/#!$\"\|\'%\^&\*;:{}=\-_`~()?]/.test(character)) {
-        woof[index] = character;
-    }
-  })
-  return woof;
-}
-
-const punctuationTest = (phrase) => {
-  let punctuation = '';
-  if (phrase.includes('.')){
-    punctuation = phrase[phrase.lastIndexOf('.')]
-
-  }
-  else if (phrase.includes('!')){
-     punctuation = phrase[phrase.lastIndexOf('!')]
-  }
-  else if (phrase.includes('?')){
-    punctuation = phrase[phrase.lastIndexOf('?')]
-  }
-  else {
-    punctuation = ''
-  }return punctuation
-}
-
 const makePigSentence = (phrase) => {
-  let punctuation = punctuationTest(phrase);
-  let phraseArr = phrase.replace(punctuation, '').split(' ');
+  let phraseArr = phrase.split(' ');
+
   phraseArr = phraseArr.map((word, index) => {
-    let meow = word.toLowerCase();
+    let beginPunctuation = beginningPunctuation(word);
+    let endingPunctuation = endPunctuation(word);
+    word = word.replace(/[.,\/#!$\"\|\'%\^&\*;:{}=\-_`~()?]/g, '')
+    let endWord = word.toLowerCase();
     if(/^[A-Z]/.test(word)) {
-      meow = toTitleCase(testFile(meow))
+      endWord = toTitleCase(wordModifier(endWord))
     } else {
-      meow = testFile(meow);
+      endWord = wordModifier(endWord);
     }
-    return meow;
+    return beginPunctuation + endWord + endingPunctuation;
   }).join(' ')
 
-  return phraseArr + punctuation;
+  return  phraseArr
 }
-
-console.log(makePigSentence('Claire had the "Banana Hat Song" quite stuck in her head all weekend.'));
+console.log(makePigSentence('Claire had the "Banana Hat Song" quite stuck in her head all weekend.'))
 
 
 module.exports = {
-  testFile:testFile,
+  wordModifier:wordModifier,
   makePigSentence:makePigSentence
 }
 }

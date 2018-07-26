@@ -1,7 +1,7 @@
 import chai from 'chai';
 import banana1 from '../bunch/banana1';
 const expect = chai.expect;
-const testFile = banana1.testFile;
+const wordModifier = banana1.wordModifier;
 const makePigSentence = banana1.makePigSentence;
 
 //  - Pig latin rules -
@@ -20,16 +20,16 @@ const makePigSentence = banana1.makePigSentence;
 
 describe('Pig latin test block', () => {
   it ('returns a string', () => {
-    expect(testFile('apple')).to.be.a('string')
+    expect(wordModifier('apple')).to.be.a('string')
   })
   it ('if word begins with vowel then it should end in way', () => {
-    expect(testFile('apple')).to.eql('appleway')
+    expect(wordModifier('apple')).to.eql('appleway')
   })
   it ('if word begins with a consonant then it should slice everything before the first vowel, add it to the end, then concat "ay" to the end', () => {
-    expect(testFile('brick')).to.eql('ickbray')
+    expect(wordModifier('brick')).to.eql('ickbray')
   })
   it ('it should work with proper nouns', () => {
-    expect(testFile('Tyler')).to.eql('Ylertay')
+    expect(wordModifier('Tyler')).to.eql('Ylertay')
   })
   it ('it should return a statement converted to pig latin with punctuation intact', () => {
     expect(makePigSentence('I had banana hat song stuck in my head all weekend.'))
