@@ -1,6 +1,7 @@
 //Javascript test set for converting strings to pig latin
 // const expect = chai.expect;
 
+export default {
 const isVowel = (char, needsWhy) => {
   if (char.length == 1 ) {
     return /[aeiou]/.test(char);
@@ -59,6 +60,7 @@ const punctuationTest = (phrase) => {
   let punctuation = '';
   if (phrase.includes('.')){
     punctuation = phrase[phrase.lastIndexOf('.')]
+
   }
   else if (phrase.includes('!')){
      punctuation = phrase[phrase.lastIndexOf('!')]
@@ -73,7 +75,7 @@ const punctuationTest = (phrase) => {
 
 const makePigSentence = (phrase) => {
   let punctuation = punctuationTest(phrase);
-  let phraseArr = phrase.replace(/[.,\/#!$\"\|\'%\^&\*;:{}=\-_`~()?]/g, '').split(' ');
+  let phraseArr = phrase.replace(punctuation, '').split(' ');
   phraseArr = phraseArr.map((word, index) => {
     let meow = word.toLowerCase();
     if(/^[A-Z]/.test(word)) {
@@ -83,11 +85,15 @@ const makePigSentence = (phrase) => {
     }
     return meow;
   }).join(' ')
-  return phraseArr + punctuation
+
+  return phraseArr + punctuation;
 }
+
 console.log(makePigSentence('Claire had the "Banana Hat Song" quite stuck in her head all weekend.'));
+
 
 module.exports = {
   testFile:testFile,
   makePigSentence:makePigSentence
+}
 }
