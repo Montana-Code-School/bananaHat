@@ -1,6 +1,7 @@
 //Javascript test set for converting strings to pig latin
 // const expect = chai.expect;
 
+export default {
 const isVowel = (char, needsWhy) => {
   if (char.length == 1 ) {
     return /[aeiou]/.test(char);
@@ -62,6 +63,7 @@ const wordModifier = (word) => {
 
 const makePigSentence = (phrase) => {
   let phraseArr = phrase.split(' ');
+
   phraseArr = phraseArr.map((word, index) => {
     let beginPunctuation = beginningPunctuation(word);
     let endingPunctuation = endPunctuation(word);
@@ -74,11 +76,14 @@ const makePigSentence = (phrase) => {
     }
     return beginPunctuation + endWord + endingPunctuation;
   }).join(' ')
+
   return  phraseArr
 }
 console.log(makePigSentence('Claire had the "Banana Hat Song" quite stuck in her head all weekend.'))
 
+
 module.exports = {
   wordModifier:wordModifier,
   makePigSentence:makePigSentence
+}
 }
