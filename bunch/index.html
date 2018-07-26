@@ -28,7 +28,6 @@
         alt="It's a banana hat!"
         class="center-block"
       >
-<!--ADD HAT EMOJI-->
       <p class="lead text-center">This is a simple Pig Latin translator named BANANAHAT.</p>
       <p class="text-center">It's awesome.</p>
       <p class="lead">
@@ -42,10 +41,10 @@
           aria-describedby="basic-addon2"
         >
         <button
+        id = "pigButton"
         class="btn btn-primary btn-lg center-block"
         style="width:160px"
         href="#"
-        onclick="pigLatin()"
         role="button">Translate!
         </button>
       </p>
@@ -57,19 +56,6 @@
       >
       </p>
     </div>
-    <script
-      src="./banana1.js"
-      charset="utf-8">
-    </script>
-    <script>
-      function modify(sentence){
-        return sentence.toUpperCase();
-      }
-      function pigLatin(){
-        let translator = document.getElementById("translator-input").value;
-        translator=modify(translator)
-        document.getElementById("output").innerHTML=translator;
-      }
-    </script>
+    <script src="bundle.js"></script>
   </body>
 </html>

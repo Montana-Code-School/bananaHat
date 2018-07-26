@@ -5,7 +5,9 @@
   "main": "bananaHatTest.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha --require babel-core/register test",
-    "d": "babel-node ./bunch/banana1.js"
+    "d": "babel-node ./bunch/banana1.js",
+    "server": "node ./server.js",
+    "build": "browserify main.js -o ./bunch/bundle.js"
   },
   "author": "",
   "license": "ISC",
@@ -15,6 +17,7 @@
     "babel-preset-env": "^1.7.0",
     "chai": "^4.1.2",
     "express": "^4.16.3",
-    "mocha": "^5.2.0"
+    "mocha": "^5.2.0",
+    "pig-latin-library": "^1.0.0"
   }
 }
